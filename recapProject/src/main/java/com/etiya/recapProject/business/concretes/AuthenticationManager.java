@@ -10,7 +10,7 @@ import com.etiya.recapProject.core.utilities.results.ErrorResult;
 import com.etiya.recapProject.core.utilities.results.Result;
 import com.etiya.recapProject.core.utilities.results.SuccessResult;
 import com.etiya.recapProject.dataAccess.abstracts.ApplicationUserDao;
-import com.etiya.recapProject.entities.requests.LoginRequest;
+import com.etiya.recapProject.entities.requests.loginRequest.LoginRequest;
 
 @Service
 public class AuthenticationManager implements AuthenticationService {

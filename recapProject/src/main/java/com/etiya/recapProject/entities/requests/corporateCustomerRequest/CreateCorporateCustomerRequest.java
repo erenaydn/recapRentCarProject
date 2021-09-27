@@ -1,5 +1,6 @@
-package com.etiya.recapProject.entities.requests.corporateRequest;
+package com.etiya.recapProject.entities.requests.corporateCustomerRequest;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -12,19 +13,21 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateCorporateCustomerRequest {
-
-	private int id;
-	
-	private String taxNumber;
-	
-	private String companyName;
+public class CreateCorporateCustomerRequest {
 	
 	@NotNull
 	@NotBlank
+	@Email
 	private String email;
-
+	
 	@NotNull
 	@NotBlank
 	private String password;
+	
+	@NotNull
+	@NotBlank
+	private String taxNumber;
+	
+	@NotNull
+	private String companyName;
 }

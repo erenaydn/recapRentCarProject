@@ -16,38 +16,38 @@ import com.etiya.recapProject.business.abstracts.IndividualCustomerService;
 import com.etiya.recapProject.core.utilities.results.DataResult;
 import com.etiya.recapProject.core.utilities.results.Result;
 import com.etiya.recapProject.entities.concretes.IndividualCustomer;
-import com.etiya.recapProject.entities.requests.IndividualCustomerRequest.CreateIndividualCustomerRequest;
-import com.etiya.recapProject.entities.requests.IndividualCustomerRequest.DeleteIndividualCustomerRequest;
-import com.etiya.recapProject.entities.requests.IndividualCustomerRequest.UpdateIndividualCustomerRequest;
+import com.etiya.recapProject.entities.requests.individualCustomerRequest.CreateIndividualCustomerRequest;
+import com.etiya.recapProject.entities.requests.individualCustomerRequest.DeleteIndividualCustomerRequest;
+import com.etiya.recapProject.entities.requests.individualCustomerRequest.UpdateIndividualCustomerRequest;
 
 @RestController
 @RequestMapping("api/individualcustomers")
 public class IndividualCustomersController {
-	private IndividualCustomerService customerService;
+	private IndividualCustomerService individualCustomerService;
 
 	@Autowired
-	public IndividualCustomersController(IndividualCustomerService customerService) {
+	public IndividualCustomersController(IndividualCustomerService individualCustomerService) {
 		super();
-		this.customerService = customerService;
+		this.individualCustomerService = individualCustomerService;
 	}
 
 	@PostMapping("/add")
 	public Result add(@Valid @RequestBody CreateIndividualCustomerRequest createIndividualCustomerRequest) {
-		return this.customerService.add(createIndividualCustomerRequest);
+		return this.individualCustomerService.add(createIndividualCustomerRequest);
 	}
 	
 	@PostMapping("/update")
-	public Result update(@Valid @RequestBody UpdateIndividualCustomerRequest updateCustomerRequest) {
-		return this.customerService.update(updateCustomerRequest);
+	public Result update(@Valid @RequestBody UpdateIndividualCustomerRequest updateIndividualCustomerRequest) {
+		return this.individualCustomerService.update(updateIndividualCustomerRequest);
 	}
 	
 	@PutMapping("/delete")
-	public Result delete(@RequestBody DeleteIndividualCustomerRequest deleteCustomerRequest) {
-		return this.customerService.delete(deleteCustomerRequest);
+	public Result delete(@RequestBody DeleteIndividualCustomerRequest deleteIndividualCustomerRequest) {
+		return this.individualCustomerService.delete(deleteIndividualCustomerRequest);
 	}
 	
 	@GetMapping("/getall")
 	public DataResult<List<IndividualCustomer>> getAll() {
-		return this.customerService.getAll();
+		return this.individualCustomerService.getAll();
 	}
 }

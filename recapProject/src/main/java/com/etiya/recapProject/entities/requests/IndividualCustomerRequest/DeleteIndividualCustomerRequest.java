@@ -1,4 +1,4 @@
-package com.etiya.recapProject.entities.requests.IndividualCustomerRequest;
+package com.etiya.recapProject.entities.requests.individualCustomerRequest;
 
 import javax.validation.constraints.NotNull;
 
@@ -14,6 +14,5 @@ import lombok.Setter;
 public class DeleteIndividualCustomerRequest {
 	
 	@NotNull
-	private String idendityNumber;
-	
+	private int id;
 }

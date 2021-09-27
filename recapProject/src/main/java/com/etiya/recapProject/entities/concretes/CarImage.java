@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "car_images")
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "car" })
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler"})
 public class CarImage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +38,7 @@ public class CarImage {
 	@Column(name = "date")
 	private LocalDate date;
 
-	@ManyToOne()
+	@ManyToOne
 	@JoinColumn(name = "car_id")
 	private Car car;
 }

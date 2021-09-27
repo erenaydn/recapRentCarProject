@@ -16,9 +16,9 @@ import com.etiya.recapProject.entities.concretes.Brand;
 import com.etiya.recapProject.entities.concretes.Car;
 import com.etiya.recapProject.entities.concretes.Color;
 import com.etiya.recapProject.entities.dtos.CarDetailDto;
-import com.etiya.recapProject.entities.requests.CarRequest.CreateCarRequest;
-import com.etiya.recapProject.entities.requests.CarRequest.DeleteCarRequest;
-import com.etiya.recapProject.entities.requests.CarRequest.UpdateCarRequest;
+import com.etiya.recapProject.entities.requests.carRequest.CreateCarRequest;
+import com.etiya.recapProject.entities.requests.carRequest.DeleteCarRequest;
+import com.etiya.recapProject.entities.requests.carRequest.UpdateCarRequest;
 
 @Service
 public class CarManager implements CarService {
@@ -61,8 +61,7 @@ public class CarManager implements CarService {
 		Color color = new Color();
 		color.setId(updateCarRequest.getColorId());
 		
-		Car car = new Car();
-		car.setId(updateCarRequest.getId());
+		Car car = this.carDao.getById(updateCarRequest.getId());
 		car.setCarName(updateCarRequest.getCarName());
 		car.setDailyPrice(updateCarRequest.getDailyPrice());
 		car.setDescription(updateCarRequest.getDescription());
@@ -77,10 +76,9 @@ public class CarManager implements CarService {
 
 	@Override
 	public Result delete(DeleteCarRequest deleteCarRequest) {
-		Car car = new Car();
-		car.setId(this.carDao.getByCarName(deleteCarRequest.getCarName()).getId());
+		Car car = this.carDao.getById(deleteCarRequest.getId());
 		
-		this.carDao.deleteById(car.getId());
+		this.carDao.delete(car);
 		return new SuccessResult(Messages.CARDELETE);
 	}
 
@@ -101,19 +99,36 @@ public class CarManager implements CarService {
 	}
 	
 	@Override
-	public DataResult<List<CarDetailDto>> getCarsByBrandName(String brandName) {
-		List<CarDetailDto> cars = this.carDao.getCarsByBrandName(brandName);
-		return new SuccessDataResult<List<CarDetailDto>>(cars, Messages.CARLIST);
+	public DataResult<List<Car>> getCarsByBrand(int brandId) {
+		List<Car> cars = this.carDao.getByBrand_Id(brandId);
+		return new SuccessDataResult<List<Car>>(cars, Messages.CARLIST);
 	}
 
 	@Override
-	public DataResult<List<CarDetailDto>> getCarsByColorName(String colorName) {
-		List<CarDetailDto> cars = this.carDao.getCarsByColorName(colorName);
-		return new SuccessDataResult<List<CarDetailDto>>(cars, Messages.CARLIST);
+	public DataResult<List<Car>> getCarsByColor(int colorId) {
+		List<Car> cars = this.carDao.getByColor_Id(colorId);
+		return new SuccessDataResult<List<Car>>(cars, Messages.CARLIST);
 	}
 
 	@Override
 	public DataResult<Car> getByCarName(String carName) {
 		return new SuccessDataResult<Car>(this.carDao.getByCarName(carName));
 	}
+	
+	@Override
+	public DataResult<List<Car>> getAvailableCars() {
+		
+		List<Car> cars = this.carDao.findAll();
+		
+		List<Car> carsInMaintenance = this.carDao.findByCarMaintenances_ReturnStatus(false);
+		
+		List<Car> rentedCars = this.carDao.findByRentals_ReturnStatus(false);
+		
+		cars.removeAll(carsInMaintenance);
+		
+		cars.removeAll(rentedCars);
+		
+		return new SuccessDataResult<List<Car>>(cars, Messages.CARLIST);
+	}
+	
 }

@@ -1,4 +1,4 @@
-package com.etiya.recapProject.core.findex;
+package com.etiya.recapProject.core.services.findex;
 
 import org.springframework.stereotype.Service;
 

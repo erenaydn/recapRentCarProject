@@ -16,9 +16,9 @@ import com.etiya.recapProject.core.utilities.results.SuccessResult;
 import com.etiya.recapProject.dataAccess.abstracts.CorporateCustomerDao;
 import com.etiya.recapProject.dataAccess.abstracts.CustomerDao;
 import com.etiya.recapProject.entities.concretes.CorporateCustomer;
-import com.etiya.recapProject.entities.requests.corporateRequest.CreateCorporateCustomerRequest;
-import com.etiya.recapProject.entities.requests.corporateRequest.DeleteCorporateCustomerRequest;
-import com.etiya.recapProject.entities.requests.corporateRequest.UpdateCorporateCustomerRequest;
+import com.etiya.recapProject.entities.requests.corporateCustomerRequest.CreateCorporateCustomerRequest;
+import com.etiya.recapProject.entities.requests.corporateCustomerRequest.DeleteCorporateCustomerRequest;
+import com.etiya.recapProject.entities.requests.corporateCustomerRequest.UpdateCorporateCustomerRequest;
 
 @Service
 public class CorporateCustomerManager implements CorporateCustomerService {
@@ -40,6 +40,7 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 		if (result != null) {
 			return result;
 		}
+		
 		CorporateCustomer corporateCustomer = new CorporateCustomer();
 
 		corporateCustomer.setCompanyName(createCorporateCustomerRequest.getCompanyName());
@@ -53,10 +54,7 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 
 	@Override
 	public Result update(UpdateCorporateCustomerRequest updateCorporateCustomerRequest) {
-		CorporateCustomer corporateCustomer = this.corporateCustomerDao
-				.getByTaxNumber(updateCorporateCustomerRequest.getTaxNumber());
-		corporateCustomer.setId(updateCorporateCustomerRequest.getId());
-
+		CorporateCustomer corporateCustomer = this.corporateCustomerDao.getById(updateCorporateCustomerRequest.getId());
 		corporateCustomer.setCompanyName(updateCorporateCustomerRequest.getCompanyName());
 		corporateCustomer.setEmail(updateCorporateCustomerRequest.getEmail());
 		corporateCustomer.setPassword(updateCorporateCustomerRequest.getPassword());
@@ -68,11 +66,9 @@ public class CorporateCustomerManager implements CorporateCustomerService {
 
 	@Override
 	public Result delete(DeleteCorporateCustomerRequest deleteCorporateCustomerRequest) {
-		CorporateCustomer corporateCustomer = new CorporateCustomer();
-		corporateCustomer
-				.setId(this.corporateCustomerDao.getByTaxNumber(deleteCorporateCustomerRequest.getTaxNumber()).getId());
+		CorporateCustomer corporateCustomer = this.corporateCustomerDao.getById(deleteCorporateCustomerRequest.getId());
 
-		this.corporateCustomerDao.deleteById(corporateCustomer.getId());
+		this.corporateCustomerDao.delete(corporateCustomer);
 		return new SuccessResult(Messages.CUSTOMERDELETE);
 	}
 

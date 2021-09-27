@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.etiya.recapProject.entities.concretes.IndividualCustomer;
 
 public interface IndividualCustomerDao extends JpaRepository<IndividualCustomer, Integer> {
-	IndividualCustomer getByIdentityNumber(String identityNumber);
-
+	IndividualCustomer getByFirstName(String firstName);
+	
 }

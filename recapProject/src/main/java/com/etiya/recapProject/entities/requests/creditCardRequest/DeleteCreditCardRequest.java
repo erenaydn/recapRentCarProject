@@ -1,5 +1,7 @@
 package com.etiya.recapProject.entities.requests.creditCardRequest;
 
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class DeleteCreditCardRequest {
 
-	private int cardId;
-
-	private int customerId;
+	@NotNull
+	private int id;
 
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.etiya.recapProject.business.abstracts.AuthenticationService;
 import com.etiya.recapProject.core.utilities.results.Result;
-import com.etiya.recapProject.entities.requests.LoginRequest;
+import com.etiya.recapProject.entities.requests.loginRequest.LoginRequest;
 
 @RestController
 @RequestMapping("api/authentication")

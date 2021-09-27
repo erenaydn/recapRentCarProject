@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.etiya.recapProject.entities.abstracts.Customer;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +17,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "individual_customers")
-
 public class IndividualCustomer extends Customer {
 
 	@Column(name = "identity_number")
@@ -26,5 +27,5 @@ public class IndividualCustomer extends Customer {
 
 	@Column(name = "last_name")
 	private String lastName;
-
+	
 }

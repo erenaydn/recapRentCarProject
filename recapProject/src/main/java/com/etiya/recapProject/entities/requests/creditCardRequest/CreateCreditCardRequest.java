@@ -1,5 +1,6 @@
 package com.etiya.recapProject.entities.requests.creditCardRequest;
 
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,13 +13,18 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CreateCreditCardRequest {
 
+	@NotNull
 	private String cardNumber;
 
+	@NotNull
 	private int customerId;
 
+	@NotNull
 	private String cardName;
 
+	@NotNull
 	private String cvc;
 
-	private String cardDate;
+	@NotNull
+	private String expiryDate;
 }

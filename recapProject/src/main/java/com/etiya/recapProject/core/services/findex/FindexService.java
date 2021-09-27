@@ -1,6 +1,4 @@
-package com.etiya.recapProject.core.findex;
-
-
+package com.etiya.recapProject.core.services.findex;
 
 public class FindexService {
 	public int individualCustomerFindexPoint(String identityNumber) {
@@ -9,7 +7,7 @@ public class FindexService {
 	}
 	public int corporateCustomerFindexPoint(String taxNumber) {
 		 
-		return 1000;
+		return 1350;
 	}
 
 }

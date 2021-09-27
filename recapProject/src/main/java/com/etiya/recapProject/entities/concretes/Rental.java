@@ -1,6 +1,7 @@
 package com.etiya.recapProject.entities.concretes;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.etiya.recapProject.entities.abstracts.Customer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.Nullable;
 
@@ -37,7 +42,7 @@ public class Rental {
 	@Nullable
 	private Date returnDate;
 
-	@Column(name = "return_status", columnDefinition = "boolean default false")
+	@Column(name = "return_status")
 	private boolean returnStatus;
 
 	@ManyToOne
@@ -47,6 +52,13 @@ public class Rental {
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
-	
-	
+
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name = "invoice_id")
+	private Invoice invoice;
+
+	@OneToMany(mappedBy = "rental")
+	@JsonIgnore
+	private List<Payment> payments;
 }

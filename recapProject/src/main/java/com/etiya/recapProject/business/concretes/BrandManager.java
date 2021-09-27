@@ -7,15 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.etiya.recapProject.business.abstracts.BrandService;
 import com.etiya.recapProject.business.constants.Messages;
+import com.etiya.recapProject.core.business.BusinessRules;
 import com.etiya.recapProject.core.utilities.results.DataResult;
+import com.etiya.recapProject.core.utilities.results.ErrorResult;
 import com.etiya.recapProject.core.utilities.results.Result;
 import com.etiya.recapProject.core.utilities.results.SuccessDataResult;
 import com.etiya.recapProject.core.utilities.results.SuccessResult;
 import com.etiya.recapProject.dataAccess.abstracts.BrandDao;
 import com.etiya.recapProject.entities.concretes.Brand;
-import com.etiya.recapProject.entities.requests.BrandRequest.CreateBrandRequest;
-import com.etiya.recapProject.entities.requests.BrandRequest.DeleteBrandRequest;
-import com.etiya.recapProject.entities.requests.BrandRequest.UpdateBrandRequest;
+import com.etiya.recapProject.entities.requests.brandRequest.CreateBrandRequest;
+import com.etiya.recapProject.entities.requests.brandRequest.DeleteBrandRequest;
+import com.etiya.recapProject.entities.requests.brandRequest.UpdateBrandRequest;
 
 @Service
 public class BrandManager implements BrandService {
@@ -31,6 +33,11 @@ public class BrandManager implements BrandService {
 	@Override
 	public Result add(CreateBrandRequest createBrandRequest) {
 
+		var result = BusinessRules.run(checkBrandName(createBrandRequest.getBrandName()));
+		if (result != null) {
+			return result;
+		}
+		
 		Brand brand = new Brand();
 		brand.setBrandName(createBrandRequest.getBrandName());
 
@@ -40,8 +47,8 @@ public class BrandManager implements BrandService {
 	}
 
 	@Override
-	public Result update(UpdateBrandRequest updateBrandRequest) {
-		Brand brand = new Brand();
+	public Result update(UpdateBrandRequest updateBrandRequest) {		
+		Brand brand = this.brandDao.getById(updateBrandRequest.getId());
 		brand.setId(updateBrandRequest.getId());
 		brand.setBrandName(updateBrandRequest.getBrandName());
 
@@ -51,10 +58,9 @@ public class BrandManager implements BrandService {
 
 	@Override
 	public Result delete(DeleteBrandRequest deleteBrandRequest) {
-		Brand brand = new Brand();
-		brand.setId(this.brandDao.getByBrandName(deleteBrandRequest.getBrandName()).getId());
+		Brand brand = this.brandDao.getById(deleteBrandRequest.getId());
 
-		this.brandDao.deleteById(brand.getId());
+		this.brandDao.delete(brand);
 		return new SuccessResult(Messages.BRANDDELETE);
 	}
 
@@ -66,6 +72,14 @@ public class BrandManager implements BrandService {
 	@Override
 	public DataResult<Brand> findById(int id) {
 		return new SuccessDataResult<Brand>(this.brandDao.findById(id).get());
+	}
+	
+	public Result checkBrandName(String brandName) {
+
+		if (this.brandDao.existsBrandByBrandName(brandName)) {
+			return new ErrorResult(Messages.BRANDNAMEERROR);
+		}
+		return new SuccessResult();
 	}
 
 }

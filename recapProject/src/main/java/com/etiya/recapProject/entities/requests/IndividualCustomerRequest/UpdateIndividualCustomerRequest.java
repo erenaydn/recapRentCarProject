@@ -1,4 +1,4 @@
-package com.etiya.recapProject.entities.requests.IndividualCustomerRequest;
+package com.etiya.recapProject.entities.requests.individualCustomerRequest;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -14,24 +14,24 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UpdateIndividualCustomerRequest {
 	
+	@NotNull
 	private int id;
 	
 	@NotNull
-	private String firstName;
-
-	@NotNull
-	private String lastName;
-
-	@NotNull
-	private String idendityNumber;
-
-	@NotNull
 	@NotBlank
 	private String email;
-
+	
 	@NotNull
 	@NotBlank
 	private String password;
-
+	
+	@NotNull
+	@NotBlank
 	private String identityNumber;
+	
+	@NotNull
+	private String firstName;
+	
+	@NotNull
+	private String lastName;
 }

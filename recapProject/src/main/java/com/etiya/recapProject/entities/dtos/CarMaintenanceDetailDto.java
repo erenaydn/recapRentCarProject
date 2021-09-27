@@ -1,4 +1,6 @@
-package com.etiya.recapProject.entities.requests;
+package com.etiya.recapProject.entities.dtos;
+
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginRequest {
-
-	private String  email;
-	private String password;
+public class CarMaintenanceDetailDto {
 	
+	private Date returnDate;
 }
