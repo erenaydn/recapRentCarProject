@@ -45,6 +45,18 @@ public class Rental {
 	@Column(name = "return_status")
 	private boolean returnStatus;
 
+	@Column(name = "pick_up_location")
+	private String pickUpLocation;
+
+	@Column(name = "drop_off_location")
+	private String dropOffLocation;
+
+	@Column(name = "start_kilometer")
+	private int startKilometer;
+
+	@Column(name = "end_kilometer")
+	private int endKilometer;
+
 	@ManyToOne
 	@JoinColumn(name = "car_id")
 	private Car car;

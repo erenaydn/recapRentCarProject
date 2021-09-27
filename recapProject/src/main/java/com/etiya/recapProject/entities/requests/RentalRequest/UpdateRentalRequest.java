@@ -2,6 +2,7 @@ package com.etiya.recapProject.entities.requests.rentalRequest;
 
 import java.util.Date;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -22,6 +23,20 @@ public class UpdateRentalRequest {
 	private Date rentDate;
 	
 	private Date returnDate;
+	
+	@Min(0)
+	@NotNull
+	private int startKilometer;
+	
+	@Min(0)
+	@NotNull
+	private int endKilometer;
+	
+	@NotNull
+	private String pickUpLocation;
+	
+	@NotNull
+	private String dropOffLocation;
 	
 	@NotNull
 	private int carId;

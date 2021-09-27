@@ -54,9 +54,11 @@ public class RentalManager implements RentalService {
 
 	@Override
 	public Result addRentalForIndividualCustomer(CreateRentalRequest createRentalRequest) {
-		Car car = new Car();
-		car.setId(createRentalRequest.getCarId());
-
+		
+		Car car = this.carDao.getById(createRentalRequest.getCarId());
+		car.setCityName(createRentalRequest.getDropOffLocation());		
+		this.carDao.save(car);
+		
 		IndividualCustomer individualCustomer = new IndividualCustomer();
 		individualCustomer.setId(createRentalRequest.getCustomerId());
 
@@ -72,6 +74,10 @@ public class RentalManager implements RentalService {
 
 		Rental rental = new Rental();
 		rental.setRentDate(createRentalRequest.getRentDate());
+		rental.setPickUpLocation(car.getCityName());
+		rental.setDropOffLocation(createRentalRequest.getDropOffLocation());
+		rental.setStartKilometer(createRentalRequest.getStartKilometer());
+		
 		rental.setCar(car);
 		rental.setCustomer(individualCustomer);
 
@@ -83,8 +89,11 @@ public class RentalManager implements RentalService {
 	@Override
 	public Result updateRentalForIndividualCustomer(UpdateRentalRequest updateRentalRequest) {
 
-		Car car = new Car();
-		car.setId(updateRentalRequest.getCarId());
+		Car car = this.carDao.getById(updateRentalRequest.getCarId());
+		car.setCityName(updateRentalRequest.getDropOffLocation());
+		car.setCurrentKilometer(updateRentalRequest.getEndKilometer());
+		this.carDao.save(car);
+		
 
 		IndividualCustomer individualCustomer = new IndividualCustomer();
 		individualCustomer.setId(updateRentalRequest.getCustomerId());
@@ -101,9 +110,14 @@ public class RentalManager implements RentalService {
 		Rental rental = this.rentalDao.getById(updateRentalRequest.getId());
 		rental.setRentDate(updateRentalRequest.getRentDate());
 		rental.setReturnDate(updateRentalRequest.getReturnDate());
+		rental.setPickUpLocation(updateRentalRequest.getPickUpLocation());
+		rental.setDropOffLocation(updateRentalRequest.getDropOffLocation());
+		rental.setReturnStatus(updateRentalRequest.isRentStatus());
+		rental.setStartKilometer(updateRentalRequest.getStartKilometer());
+		
 		rental.setCar(car);
 		rental.setCustomer(individualCustomer);
-		rental.setReturnStatus(updateRentalRequest.isRentStatus());
+		
 
 		this.rentalDao.save(rental);
 		return new SuccessResult(Messages.RENTALUPDATE);
@@ -111,8 +125,10 @@ public class RentalManager implements RentalService {
 
 	@Override
 	public Result addRentalForCorporateCustomer(CreateRentalRequest createRentalRequest) {
-		Car car = new Car();
-		car.setId(createRentalRequest.getCarId());
+		
+		Car car = this.carDao.getById(createRentalRequest.getCarId());
+		car.setCityName(createRentalRequest.getDropOffLocation());
+		this.carDao.save(car);
 
 		CorporateCustomer corporateCustomer = new CorporateCustomer();
 		corporateCustomer.setId(createRentalRequest.getCustomerId());
@@ -127,6 +143,10 @@ public class RentalManager implements RentalService {
 		}
 		Rental rental = new Rental();
 		rental.setRentDate(createRentalRequest.getRentDate());
+		rental.setPickUpLocation(car.getCityName());
+		rental.setDropOffLocation(createRentalRequest.getDropOffLocation());
+		rental.setStartKilometer(createRentalRequest.getStartKilometer());
+		
 		rental.setCar(car);
 		rental.setCustomer(corporateCustomer);
 
@@ -136,8 +156,11 @@ public class RentalManager implements RentalService {
 
 	@Override
 	public Result updateRentalForCorporateCustomer(UpdateRentalRequest updateRentalRequest) {
-		Car car = new Car();
-		car.setId(updateRentalRequest.getCarId());
+		
+		Car car = this.carDao.getById(updateRentalRequest.getCarId());
+		car.setCityName(updateRentalRequest.getDropOffLocation());
+		car.setCurrentKilometer(updateRentalRequest.getEndKilometer());
+		this.carDao.save(car);
 
 		CorporateCustomer corporateCustomer = new CorporateCustomer();
 		corporateCustomer.setId(updateRentalRequest.getCustomerId());
@@ -155,7 +178,12 @@ public class RentalManager implements RentalService {
 		Rental rental = this.rentalDao.getById(updateRentalRequest.getId());
 		rental.setRentDate(updateRentalRequest.getRentDate());
 		rental.setReturnDate(updateRentalRequest.getReturnDate());
+		rental.setPickUpLocation(updateRentalRequest.getPickUpLocation());
+		rental.setDropOffLocation(updateRentalRequest.getDropOffLocation());
 		rental.setReturnStatus(updateRentalRequest.isRentStatus());
+		rental.setStartKilometer(updateRentalRequest.getStartKilometer());
+		
+		
 		rental.setCar(car);
 		rental.setCustomer(corporateCustomer);
 

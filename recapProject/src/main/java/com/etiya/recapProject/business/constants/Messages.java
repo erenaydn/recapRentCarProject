@@ -87,5 +87,10 @@ public class Messages {
 	public static final String INVOICEDELETE = "Invoice deleted.";
 	public static final String INVOICELIST = "Invoice listed.";
 	public static final String INVOICEBYCUSTOMERLIST = "Invoice listed.";
+	
+	public static final String DAMAGEADD = "Damage added.";
+	public static final String DAMAGEUPDATE = "Damage updated.";
+	public static final String DAMAGEDELETE = "Damage deleted.";
+	public static final String DAMAGELIST = "Damages listed.";
 
 }
