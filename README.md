@@ -1,6 +1,6 @@
 # RecapProject
-### Backend of a car rental website for Etiya academy.
-#### We designed the project of the `backend service of a simple car rental site`. We tried to comply with `SOLID rules` in the project. Using `SpringBoot`, we performed `database operations with API's`. We have associated our tables with `JpaRepository`, which is part of the Spring framework.
+#### Backend of a car rental website for Etiya academy.
+-->  We designed the project of the `backend service of a simple car rental site`. We tried to comply with `SOLID rules` in the project. Using `SpringBoot`, we performed `database operations with API's`. We have associated our tables with `JpaRepository`, which is part of the Spring framework.
 
 
 ## 💡 Run
@@ -19,31 +19,31 @@
 </p>
 
 ## 🧐 About Layers
-#### API
+### API
 * It is the layer where we run our codes with `Spring boot`.
 <p align="center">
 <img src="https://user-images.githubusercontent.com/83093241/135363445-b4000808-c50a-4696-b780-e4ba0686abb3.png " width="200" height="200" />
 </p>
 
-#### Business
+### Business
 * It is the layer where `business rules` are defined and controlled. When a command is received by the program, what operations it should do and which set of rules it should go through are defined here.
 <p align="center">
 <img src="https://user-images.githubusercontent.com/83093241/135363510-69e84ab7-f77e-44b4-a787-1962dd0dcf58.png " width="200" height="400" />
 </p>
 
-#### Core
+### Core
 * It is the layer that `connects with external  services`.Generally we used this layer to use some `rules` or `utilities`.
 <p align="center">
 <img src="https://user-images.githubusercontent.com/83093241/135363576-5ec0531b-c6be-4f54-b0a9-56b29cdd8642.png " width="200" height="200" />
 </p>
 
-#### Data Access
+### Data Access
 * It is the layer that connects with the `database`. Tables are created using `JpaRepository`.
 <p align="center">
 <img src="https://user-images.githubusercontent.com/83093241/135363653-e49f7f88-b793-405a-b8f7-e8ed87dfafc9.png" width="200" height="200" />
 </p>
 
-#### Entities
+### Entities
 * It is the layer where `Objects`, `Dto's` and `Requests` are defined.
 <p align="center">
 <img src="https://user-images.githubusercontent.com/83093241/135363692-647f31bb-d027-4268-903e-d60d8508f73e.png" width="200" height="400" />
