@@ -40,6 +40,10 @@ public class InvoiceManager implements InvoiceService {
 
 	@Override
 	public Result add(CreateInvoiceRequest createInvoiceRequest) {
+		long totalRentDay = (ChronoUnit.DAYS.between(
+				this.rentalDao.getById(createInvoiceRequest.getRentalId()).getRentDate().toInstant(),
+				this.rentalDao.getById(createInvoiceRequest.getRentalId()).getReturnDate().toInstant()));
+		
 		Customer customer = new Customer();
 		customer.setId(createInvoiceRequest.getCustomerId());
 
@@ -47,16 +51,14 @@ public class InvoiceManager implements InvoiceService {
 		rental.setId(createInvoiceRequest.getRentalId());
 
 		Invoice invoice = new Invoice();
-		invoice.setAmount(createInvoiceRequest.getAmount());
+		invoice.setAmount(totalRentDay*this.rentalDao.getById(createInvoiceRequest.getRentalId()).getCar().getDailyPrice());
 		invoice.setInvoiceDate(createInvoiceRequest.getInvoiceDate());
 		invoice.setInvoiceNumber(createInvoiceRequest.getInvoiceNumber());
 
 		invoice.setRentalDate(this.rentalDao.getById(createInvoiceRequest.getRentalId()).getRentDate());
 		invoice.setRentalReturnDate(this.rentalDao.getById(createInvoiceRequest.getRentalId()).getReturnDate());
 
-		invoice.setTotalRentalDay(ChronoUnit.DAYS.between(
-				this.rentalDao.getById(createInvoiceRequest.getRentalId()).getRentDate().toInstant(),
-				this.rentalDao.getById(createInvoiceRequest.getRentalId()).getReturnDate().toInstant()));
+		invoice.setTotalRentalDay(totalRentDay);
 
 		invoice.setCustomer(customer);
 		invoice.setRental(rental);
@@ -67,6 +69,10 @@ public class InvoiceManager implements InvoiceService {
 
 	@Override
 	public Result update(UpdateInvoiceRequest updateInvoiceRequest) {
+		long totalRentDay = (ChronoUnit.DAYS.between(
+				this.rentalDao.getById(updateInvoiceRequest.getRentalId()).getRentDate().toInstant(),
+				this.rentalDao.getById(updateInvoiceRequest.getRentalId()).getReturnDate().toInstant()));
+		
 		Customer customer = new Customer();
 		customer.setId(updateInvoiceRequest.getCustomerId());
 
@@ -74,16 +80,14 @@ public class InvoiceManager implements InvoiceService {
 		rental.setId(updateInvoiceRequest.getRentalId());
 
 		Invoice invoice = this.invoiceDao.getById(updateInvoiceRequest.getId());
-		invoice.setAmount(updateInvoiceRequest.getAmount());
+		invoice.setAmount(totalRentDay*this.rentalDao.getById(updateInvoiceRequest.getRentalId()).getCar().getDailyPrice());
 		invoice.setInvoiceDate(updateInvoiceRequest.getInvoiceDate());
 		invoice.setInvoiceNumber(updateInvoiceRequest.getInvoiceNumber());
 
 		invoice.setRentalDate(this.rentalDao.getById(updateInvoiceRequest.getRentalId()).getRentDate());
 		invoice.setRentalReturnDate(this.rentalDao.getById(updateInvoiceRequest.getRentalId()).getReturnDate());
 
-		invoice.setTotalRentalDay(ChronoUnit.DAYS.between(
-				this.rentalDao.getById(updateInvoiceRequest.getRentalId()).getRentDate().toInstant(),
-				this.rentalDao.getById(updateInvoiceRequest.getRentalId()).getReturnDate().toInstant()));
+		invoice.setTotalRentalDay(totalRentDay);
 
 		invoice.setCustomer(customer);
 		invoice.setRental(rental);

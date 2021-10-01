@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,16 +26,16 @@ public class UpdateInvoiceRequest {
 	@NotNull
 	private Date invoiceDate;
 	
-	@NotNull
+	@JsonIgnore
 	private Date rentalDate;
 	
-	@NotNull
+	@JsonIgnore
 	private Date rentalReturnDate;
 	
-	@NotNull
+	@JsonIgnore
 	private Long totalRentalDay;
 	
-	@NotNull
+	@JsonIgnore
 	private Double amount;
 	
 	@NotNull

@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -16,21 +17,29 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "payment")
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class Payment {
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+@Table(name = "additional_services")
+public class AdditionalService {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int Id;
+	private int id;
 	
-	@Column(name = "amount")
-	private double amount;
-
+	@Column(name = "name")
+	private String name;
+	
+	@Column(name = "daily_price")
+	private double dailyPrice;
+	
+	@Column(name = "description")
+	private String description;
+	
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "credit_card_id")
-	private CreditCard creditCard;
+	@JoinColumn(name = "rental_id")
+	private Rental rental;
 }

@@ -1,4 +1,4 @@
-package com.etiya.recapProject.entities.requests.paymentRequest;
+package com.etiya.recapProject.entities.requests.additionalServiceRequest;
 
 import javax.validation.constraints.NotNull;
 
@@ -11,12 +11,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreatePaymentRequest {
+public class DeleteAdditionalServiceRequest {
 	
 	@NotNull
-	private int creditCardId;
-	
-	@NotNull
-	private double amount;
-	
+	private int id;
 }

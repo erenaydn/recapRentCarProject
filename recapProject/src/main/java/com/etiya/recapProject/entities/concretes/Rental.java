@@ -57,6 +57,12 @@ public class Rental {
 	@Column(name = "end_kilometer")
 	private int endKilometer;
 
+	@Column(name = "dailyPrice")
+	private double dailyPrice;
+	
+	@Column(name = "amount")
+	private double amount;
+	
 	@ManyToOne
 	@JoinColumn(name = "car_id")
 	private Car car;
@@ -69,8 +75,8 @@ public class Rental {
 	@OneToOne
 	@JoinColumn(name = "invoice_id")
 	private Invoice invoice;
-
+	
 	@OneToMany(mappedBy = "rental")
-	@JsonIgnore
-	private List<Payment> payments;
+	private List<AdditionalService> additionalServices;
+			
 }

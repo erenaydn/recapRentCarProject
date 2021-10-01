@@ -1,9 +1,14 @@
 package com.etiya.recapProject.entities.requests.rentalRequest;
 
 import java.util.Date;
+import java.util.List;
 
-import javax.validation.constraints.Min;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+
+import com.etiya.recapProject.entities.dtos.AdditionalServiceDto;
+import com.etiya.recapProject.entities.dtos.PaymentDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +23,9 @@ public class CreateRentalRequest {
 
 	@NotNull
 	private Date rentDate;
+	
+	@NotNull
+	private Date returnDate;
 
 	@NotNull
 	private int carId;
@@ -25,14 +33,21 @@ public class CreateRentalRequest {
 	@NotNull
 	private int customerId;
 
-	@NotNull
-	@Min(0)
+	@JsonIgnore
 	private int startKilometer;
 
-	@NotNull
+	@JsonIgnore
 	private String pickUpLocation;
 
 	@NotNull
 	private String dropOffLocation;
-
+	
+	@JsonIgnore
+	private double dailyPrice;
+	
+	@NotNull
+	@Valid
+	private PaymentDto paymentDto;
+	
+	private List<AdditionalServiceDto> additionalServiceDtos;
 }

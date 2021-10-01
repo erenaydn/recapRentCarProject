@@ -61,10 +61,10 @@ public class Messages {
 	public static final String LOGINPASSWORDERROR = "Wrong password.";
 	public static final String LOGINSUCCESS = "Login successful.";
 
-	public static final String CREDITCARDADD = "Credit card image added.";
-	public static final String CREDITCARDUPDATE = "Credit card image updated.";
-	public static final String CREDITCARDELETE = "Credit card image deleted.";
-	public static final String CREDITCARDLIST = "Credit card images listed.";
+	public static final String CREDITCARDADD = "Credit card added.";
+	public static final String CREDITCARDUPDATE = "Credit card updated.";
+	public static final String CREDITCARDELETE = "Credit card deleted.";
+	public static final String CREDITCARDLIST = "Credit cards listed.";
 	public static final String CREDITCARDNUMBERERROR = "Credit card number is invalid.";
 	public static final String CREDITCARDDATEERROR = "Credit card date is invalid.";
 	public static final String CREDITCARDCVCERROR = "Credit card CVC is invalid.";
@@ -75,6 +75,7 @@ public class Messages {
 	public static final String PAYMENTLIST = "Payments listed.";
 	public static final String PAYMENTCARDSAVE = "Credit card saved.";
 	public static final String PAYMENTCARDNOTSAVE = "Credit card not saved.";
+	public static final String PAYMENTCARDFAIL = "The payment could not be made.";
 
 	public static final String CARMAINTENANCEADD = "Car maintenance added.";
 	public static final String CARMAINTENANCEUPDATE = "Car maintenance updated.";
@@ -92,5 +93,11 @@ public class Messages {
 	public static final String DAMAGEUPDATE = "Damage updated.";
 	public static final String DAMAGEDELETE = "Damage deleted.";
 	public static final String DAMAGELIST = "Damages listed.";
+	
+	public static final String ADDITIONALSERVICEADD = "Additional service added.";
+	public static final String ADDITIONALSERVICEUPDATE = "Additional service updated.";
+	public static final String ADDITIONALSERVICEDELETE = "Additional service deleted.";
+	public static final String ADDITIONALSERVICELIST = "Additional services listed.";
+	
 
 }

@@ -32,7 +32,7 @@ public class CreateInvoiceRequest {
 	@JsonIgnore
 	private Long totalRentalDay;
 
-	@NotNull
+	@JsonIgnore
 	private Double amount;
 
 	@NotNull

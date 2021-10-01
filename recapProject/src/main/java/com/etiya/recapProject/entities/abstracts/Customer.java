@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.etiya.recapProject.entities.concretes.ApplicationUser;
 import com.etiya.recapProject.entities.concretes.CreditCard;
 import com.etiya.recapProject.entities.concretes.Invoice;
 import com.etiya.recapProject.entities.concretes.Rental;
